@@ -1,3 +1,1 @@
-degradation_preview_v1用于选退化强度
-limit_pilot_v1用于P0–P5小规模训练对比
-test200_builder_v2用于生成测试配对
+degradation_preview_v1用于选退化强度；limit_pilot_v1用于P0–P5小规模训练对比；test200_builder_v2用于生成测试配对
