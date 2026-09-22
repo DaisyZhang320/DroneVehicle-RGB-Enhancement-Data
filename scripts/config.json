@@ -1,0 +1,128 @@
+{
+  "root": "F:/26mutisensor/DroneVehicle",
+  "manual_results_csv": "07_manual_review_v1/_tables/manual_review_results.csv",
+  "dataset_output": "08_rgb_enhancement_dataset_v3_3",
+  "manual_clean_label": "day_clean",
+  "target_counts": {
+    "train": null,
+    "val": 0,
+    "test": 200
+  },
+  "fixed_pair_target_counts": {
+    "train": 2000,
+    "val": null,
+    "test": null
+  },
+  "selection_seed": 20260814,
+  "min_image_id_gap": {
+    "train": 0,
+    "val": 2,
+    "test": 2
+  },
+  "gt_export": {
+    "mode": "crop_png",
+    "image_format": "png",
+    "use_analysis_roi": true,
+    "fallback_for_840x712": [100, 100, 740, 612]
+  },
+  "degradation": {
+    "fixed_seed": 20260814,
+    "image_format": "png",
+    "operation_order": [
+      "haze",
+      "dark",
+      "noise"
+    ],
+    "recipe_weights": {
+      "noise": 1.0,
+      "dark": 1.0,
+      "haze": 1.0,
+      "dark_noise": 1.0,
+      "haze_noise": 1.0,
+      "haze_dark": 1.0,
+      "haze_dark_noise": 1.0
+    },
+    "severity_weights": {
+      "light": 1.0,
+      "medium": 1.0,
+      "heavy": 1.0
+    },
+    "haze": {
+      "airlight": [0.88, 0.96],
+      "coarse_grid": [5, 9],
+      "levels": {
+        "light": {
+          "transmission_low": [0.72, 0.80],
+          "transmission_high": [0.86, 0.94]
+        },
+        "medium": {
+          "transmission_low": [0.55, 0.65],
+          "transmission_high": [0.75, 0.85]
+        },
+        "heavy": {
+          "transmission_low": [0.12, 0.22],
+          "transmission_high": [0.28, 0.42]
+        }
+      }
+    },
+    "dark": {
+      "model": "global_monotonic_luminance",
+      "preserve_chroma": true,
+      "streetlight_spots": false,
+      "spatial_light_field": false,
+      "levels": {
+        "light": {
+          "target_luma_p50": [0.39, 0.41],
+          "gamma": [1.15, 1.28],
+          "highlight_cap": [0.70, 0.74],
+          "max_source_p50_ratio": 0.85
+        },
+        "medium": {
+          "target_luma_p50": [0.31, 0.33],
+          "gamma": [1.38, 1.55],
+          "highlight_cap": [0.53, 0.57],
+          "max_source_p50_ratio": 0.70
+        },
+        "heavy": {
+          "target_luma_p50": [0.045, 0.055],
+          "gamma": [3.70, 4.00],
+          "highlight_cap": [0.085, 0.105],
+          "max_source_p50_ratio": 0.14
+        }
+      }
+    },
+    "noise": {
+      "distribution": "gaussian",
+      "mean_255": 0.0,
+      "truncate_sigma": 3.0,
+      "levels": {
+        "light": {
+          "sigma_255": [8.0, 12.0]
+        },
+        "medium": {
+          "sigma_255": [18.0, 22.0]
+        },
+        "heavy": {
+          "sigma_255": [45.0, 55.0]
+        }
+      }
+    },
+    "combination_policy": {
+      "single": {
+        "light": ["light"],
+        "medium": ["medium"],
+        "heavy": ["heavy"]
+      },
+      "double": {
+        "light": ["light", "light"],
+        "medium": ["medium", "light"],
+        "heavy": ["heavy", "heavy"]
+      },
+      "triple": {
+        "light": ["light", "light", "light"],
+        "medium": ["medium", "light", "light"],
+        "heavy": ["heavy", "heavy", "heavy"]
+      }
+    }
+  }
+}

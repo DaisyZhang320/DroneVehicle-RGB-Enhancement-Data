@@ -1,0 +1,105 @@
+{
+  "tool_version": "1.1.0",
+  "purpose": "five-image parameter screening only; values are experiment proposals, not teacher-specified final parameters",
+  "sample_count": 5,
+  "selection_seed": 20260910,
+  "haze": {
+    "H1": {
+      "label": "lighter",
+      "transmission_low": [0.45, 0.60],
+      "transmission_high": [0.65, 0.80]
+    },
+    "H2": {
+      "label": "moderate",
+      "transmission_low": [0.25, 0.40],
+      "transmission_high": [0.45, 0.60]
+    },
+    "H3": {
+      "label": "current_extreme_reference",
+      "transmission_low": [0.12, 0.22],
+      "transmission_high": [0.28, 0.42]
+    }
+  },
+  "dark": {
+    "D1": {
+      "label": "lighter",
+      "target_luma_p50": [0.15, 0.20],
+      "gamma": [1.90, 2.30],
+      "highlight_cap": [0.30, 0.38],
+      "max_source_p50_ratio": 0.45
+    },
+    "D2": {
+      "label": "moderate",
+      "target_luma_p50": [0.09, 0.13],
+      "gamma": [2.60, 3.20],
+      "highlight_cap": [0.17, 0.24],
+      "max_source_p50_ratio": 0.28
+    },
+    "D3": {
+      "label": "current_extreme_reference",
+      "target_luma_p50": [0.045, 0.055],
+      "gamma": [3.70, 4.00],
+      "highlight_cap": [0.085, 0.105],
+      "max_source_p50_ratio": 0.14
+    }
+  },
+  "noise": {
+    "N1": {
+      "label": "teacher_note_range_1",
+      "sigma_255": [5.0, 15.0]
+    },
+    "N2": {
+      "label": "teacher_note_range_2",
+      "sigma_255": [15.0, 35.0]
+    },
+    "N3": {
+      "label": "current_extreme_reference",
+      "sigma_255": [45.0, 55.0]
+    }
+  },
+  "fixed_parameters": {
+    "airlight": [0.88, 0.96],
+    "coarse_grid": [5, 9],
+    "noise_mean_255": 0.0,
+    "noise_truncate_sigma": 3.0,
+    "operation_order": ["dark", "noise"]
+  },
+  "pilot_policies": {
+    "P0": {
+      "haze": "H1",
+      "dark": "D1",
+      "noise": "N1",
+      "purpose": "easy baseline"
+    },
+    "P1": {
+      "haze": "H2",
+      "dark": "D1",
+      "noise": "N1",
+      "purpose": "isolate stronger haze"
+    },
+    "P2": {
+      "haze": "H3",
+      "dark": "D1",
+      "noise": "N1",
+      "purpose": "isolate extreme haze"
+    },
+    "P3": {
+      "haze": "H2",
+      "dark": "D1",
+      "noise": "N2",
+      "purpose": "isolate stronger noise"
+    },
+    "P4": {
+      "haze": "H2",
+      "dark": "D2",
+      "noise": "N1",
+      "purpose": "isolate stronger darkness"
+    },
+    "P5": {
+      "haze": "H2",
+      "dark": "D2",
+      "noise": "N2",
+      "purpose": "dark-noise interaction boundary"
+    }
+  }
+}
